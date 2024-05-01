@@ -1,5 +1,8 @@
-import { Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
+
+import HomeLayout from './Layouts/HomeLayout'
+import HomePage from './Pages/HomePage';
 
 function App() {
   
@@ -7,8 +10,12 @@ function App() {
   return (
     <>
      <Routes>
+     <Route path="/" element={<HomePage />}> </Route>
+     
 
      </Routes>
+
+     {/* <HomeLayout /> */}
     </>
   )
 }
