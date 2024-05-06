@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Footer from "../Components/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../Redux/Slices/AuthSlice";
+import Signup from "../Pages/Signup";
 
 function HomeLayout({ children }){
 
@@ -86,7 +87,7 @@ navigate("/");
                                         <Link to="/login">Login</Link>
                                     </button>
                                     <button className='btn-secondary px-4 py-1 font-semibold rounded-md w-full'>
-                                        <Link to="/signup">Signup</Link>
+                                        <Link to="/Signup">Signup</Link>
                                     </button>
                         </div>
                         </li>
