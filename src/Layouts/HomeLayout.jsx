@@ -33,12 +33,12 @@ function HomeLayout({ children }){
         drawerSide[0].style.width = '0';
     }
 
-    function handleLogout(e){
+  async  function handleLogout(e){
   e.preventDefault();
 
-//   const res = await dispatch(logout())
-  //if(res?.payload.sucess)
-navigate("/");
+  const res = await dispatch(logout())
+  if(res?.payload.sucess)
+       navigate("/");
     }
 
     return (
