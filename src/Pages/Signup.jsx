@@ -4,6 +4,7 @@ import { BsPersonCircle } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
+import { isEmail, isValidPassword } from "../Helpers/regexMatcher";
 
 import { createAccount } from "../Redux/Slices/AuthSlice";
 
