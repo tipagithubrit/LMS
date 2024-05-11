@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+
 import { useLocation } from "react-router-dom";
 import HomeLayout from "../../Layouts/HomeLayout";
 import {useSelector} from "react-redux";
@@ -11,7 +11,7 @@ function CourseDescription(){
 
 
 
- 
+
     return (
        <HomeLayout>
           <div className="min-h[90vh] pt-12 px-20 flex flex-col items-center justify-center text-white">
