@@ -37,7 +37,7 @@ function HomeLayout({ children }){
   e.preventDefault();
 
   const res = await dispatch(logout())
-  if(res?.payload.sucess)
+  if(res?.payload?.sucess)
        navigate("/");
     }
 
