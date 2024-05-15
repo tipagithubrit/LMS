@@ -79,8 +79,31 @@ function Signup() {
         formData.append("password",signupData.password);
         formData.append("avatar",signupData.avatar);
 
+
+    // Make POST request to signup endpoint
+    fetch("http://localhost:5000/api/v1/user/register", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Failed to create account");
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Handle successful signup
+        toast.success("Account created successfully");
+        navigate("/"); // Redirect to home page or login page
+    })
+    .catch(error => {
+        // Handle signup error
+        toast.error(error.message);
+        console.error("Signup error:", error);
+    });
+
         // dipatch create account action 
-        const response =  dispatch(createNewAccount(formData));
+        const response =  dispatch(createAccount(formData));
         console.log(response)
         if(response?.payload?.success)
 

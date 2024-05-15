@@ -14,6 +14,7 @@ import CourseDescription from './Pages/Course/CourseDescription';
 import RequireAuth from './Components/Auth/RequireAuth';
 import CreateCourse from './Pages/Course/CreateCourse';
 import Profile from './Pages/User/Profile';
+import EditPRofile from './Pages/User/EditProfile';
 
 function App() {
   
@@ -24,7 +25,8 @@ function App() {
      <Route path="/" element={<HomePage />}> </Route>
      <Route path="/about" element={<AboutUs />}> </Route>
      <Route path = '/courses' element ={<CourseList />}> </Route>
-     <Route path='/contact'element={<Contact />} />
+     <Route path='/contact'element={<Contact />} />/
+     {/* <Route path='/course/create' element={<CreateCourse />} /> */}
      <Route path='/denied'element={<Denied />} />
 
      <Route path='/course/description' element={<CourseDescription />} />
@@ -39,6 +41,7 @@ function App() {
 
      <Route element={<RequireAuth allowedRoles={["ADMIN", "USER"]}/>}>
       <Route path='/user/profile' element={<Profile />} />
+      <Route path='/user/editprofile' element={<EditPRofile />} />
       </Route>
  
    <Route path="*" element={<NotFound />}></Route>
