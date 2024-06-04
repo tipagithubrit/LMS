@@ -1,61 +1,59 @@
 import { useState } from "react";
-import HomeLayout from "../Layouts/HomeLayout";
-import toast from "react-hot-toast";
-import { isEmail } from "../Helpers/regexMatcher";
+import { toast } from "react-hot-toast";
+
 import axiosInstance from "../Helpers/axiosInstance";
+import { isEmail } from "../Helpers/regexMatcher";
+import HomeLayout from "../Layouts/HomeLayout";
 
-function Contact (){
+function Contact() {
 
-      const [userInput, setUserInput] =useState({
-         name:"",
-         email :"",
-         message:"",
-      });
+    const [userInput, setUserInput] = useState({
+        name: "",
+        email: "",
+        message: "",
+    });
 
-       function handleInputChange(e) {
+    function handleInputChange(e) {
         const {name, value} = e.target;
-        console.log(name,value);
         setUserInput({
             ...userInput,
-            [name] :value
+            [name]: value
         })
+    } 
 
- }
-
- async function onFormSubmit(e){
-    e.preventdefault();
-    if(!userInput.email || !userInput.name || !userInput.message){
-        toast.error("All fields are required");
-        return;
-    }
-
-    if(!isEmail(userInput.email)) {
-        toast.error("invalid email")
-        return;
-    }
-
-    try {
-        const response = axiosInstance.post('/contact', userInput);
-        toast.promise(response, {
-            loading : "Submitting your message",
-            success : "Form submitted sucessfully",
-            error : "Failed to submit the form"
-        });
-        const contactResponse = await response;
-        if(contactResponse?.data?.success){
-            setUserInput({
-                name:"",
-                email :"",
-                message:"",
-            })
-
+    async function onFormSubmit(e) {
+        e.preventDefault();
+        if(!userInput.email || !userInput.name || !userInput.message) {
+            toast.error("All fields are mandatory");
+            return;
         }
 
-    }catch(err){
-        toast.error("Operation Failed.......")
+        if(!isEmail(userInput.email)) {
+            toast.error("Invalid email");
+            return;
+        }
+
+        try {
+            const response = axiosInstance.post("/contact", userInput);
+            toast.promise(response, {
+                loading: "Submitting your message...",
+                success: "Form submitted successfully",
+                error: "Failed to submit the form"
+            });
+            const contactResponse = await response;
+            console.log(contactResponse)
+            if(contactResponse?.data?.success) {
+                setUserInput({
+                    name: "",
+                    email: "",
+                    message: "",
+                });
+            }
+        } catch (err) {
+            toast.error("operation failed....")
+        }
 
     }
-  }
 
     return (
         <HomeLayout>
@@ -125,8 +123,7 @@ function Contact (){
             </div>
             
         </HomeLayout>
-    )
-
+    );
 }
 
 export default Contact;
